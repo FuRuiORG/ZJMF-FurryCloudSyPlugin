@@ -274,7 +274,7 @@
             $.each( productsData,function (k,v){
                 let type='';
                 let html='<div style="padding: 20px;margin:10px;box-sizing: border-box;border: 1px solid #333333;"><table class="table table-bordered table-hover">';
-                html +='<caption style="caption-side:top;">'+v.name+'：<select name="group'+v.id+'" class="group-select">'+Groups.join('')+'</select><select name="menu'+v.id+'">'+Menu.join('')+'</select> <button type="button" class="btn btn-danger btn-sm update-files" data-vid="'+v.id+'" data-type="'+v.name+'">批量导入</button></caption>';
+                html +='<caption style="caption-side:top;">'+v.name+'：<input type="text" class="group-search form-control form-control-sm d-inline-block w-auto mr-2" placeholder="搜索分组..." data-target="group'+v.id+'"><select name="group'+v.id+'" class="group-select">'+Groups.join('')+'</select><select name="menu'+v.id+'">'+Menu.join('')+'</select> <button type="button" class="btn btn-danger btn-sm update-files" data-vid="'+v.id+'" data-type="'+v.name+'">批量导入</button></caption>';
                 html +='<thead class="thead-light">' +
                     '<tr>' +
                     '<th class="checkbox" style="width: 100px;">' +
@@ -324,6 +324,32 @@
             $('.thead-checkbox').off('click').on('click',function (){
                 let self=$(this),checked=self.find('input[type="checkbox"]').prop('checked');
                 self.closest('table').find('input[type="checkbox"]:not(:disabled)').prop('checked',checked);
+            });
+
+            // 绑定分组搜索事件
+            $('.group-search').off('keyup').on('keyup', function() {
+                const searchTerm = $(this).val().toLowerCase();
+                const targetSelectId = $(this).data('target');
+                const $select = $('select[name="' + targetSelectId + '"]');
+                const $options = $select.find('option');
+
+                $options.each(function() {
+                    const optionText = $(this).text().toLowerCase();
+                    const isSpecialOption = $(this).val() === '' || $(this).val() === '-1';
+                    
+                    // 始终显示"请选择分组"和"新建分组"选项
+                    if (isSpecialOption) {
+                        $(this).show();
+                        return;
+                    }
+
+                    // 过滤其他选项
+                    if (optionText.indexOf(searchTerm) !== -1) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
             });
 
             $('.update-files').off('click').on('click',function (){
