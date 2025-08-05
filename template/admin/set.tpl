@@ -140,6 +140,7 @@
         }
 
         // 检查商品是否已导入
+        // 检查商品是否已导入
         function isProductImported(productId) {
             // 同时检查服务器数据和本地存储
             return clientImportedProducts.hasOwnProperty(productId) || importedProducts.includes(productId);
@@ -218,11 +219,18 @@
                                 clientImportedProducts = r.client;
 
                                 // 合并服务器数据和本地存储数据
+                                // 1. 将服务器数据同步到本地存储
                                 for (let productId in clientImportedProducts) {
                                     if (clientImportedProducts.hasOwnProperty(productId) && !importedProducts.includes(productId)) {
                                         importedProducts.push(productId);
                                     }
                                 }
+                                // 2. 将本地存储数据同步到服务器数据对象
+                                importedProducts.forEach(function(productId) {
+                                    if (!clientImportedProducts.hasOwnProperty(productId)) {
+                                        clientImportedProducts[productId] = true;
+                                    }
+                                });
                                 saveImportedProducts();
 
                                 // 存储全部商品数据
@@ -390,11 +398,12 @@
 
                                 // 更新UI，禁用已导入商品的复选框
                                 id.forEach(function(product) {
-                                    $('#customCheck' + product.id).prop('disabled', true);
-                                    $('#customCheck' + product.id).closest('tr').find('td:last').text('已导入').addClass('text-success').removeClass('text-danger');
-                                    // 对于已导入的商品，完全移除复选框
-                                    if ($('#customCheck' + product.id).length) {
-                                        $('#customCheck' + product.id).closest('div').remove();
+                                    const $checkbox = $('#customCheck' + product.id);
+                                    if ($checkbox.length) {
+                                        $checkbox.prop('disabled', true);
+                                        $checkbox.closest('tr').find('td:last').text('已导入').addClass('text-success').removeClass('text-danger');
+                                        // 对于已导入的商品，完全移除复选框
+                                        $checkbox.closest('div').remove();
                                     }
                                 });
 
