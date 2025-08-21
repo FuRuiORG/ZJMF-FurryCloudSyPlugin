@@ -23,7 +23,8 @@ FurryCloud一键同步上游修复版是一款用于快速同步上游产品数�
 - 更新说明：初始版本，实现功能，原版超过200多的产品列表就无法获取，现已修复
 
 ## 作者信息
-- 作者：FurryCloud
+- 原作者：OJW云互联
+- 修复版作者：FurryCloud
 - 联系邮箱：[support@hellofurry.cn](mailto:support@hellofurry.cn)
 
 ## 感谢
