@@ -27,4 +27,5 @@ FurryCloud一键同步上游修复版是一款用于快速同步上游产品数�
 - 联系邮箱：[support@hellofurry.cn](mailto:support@hellofurry.cn)
 
 ## 感谢
-- [FurryCloud](https://cloud.xn--rhyr4i.org/)
+- [FurryCloud](https://idc.monster/)
+- [OJW云互联](https://yun.ojwyun.cn/)
