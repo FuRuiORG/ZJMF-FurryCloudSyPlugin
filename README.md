@@ -9,7 +9,7 @@ FurryCloud一键同步上游修复版是一款用于快速同步上游产品数�
 - 快速导入产品列表
 ## 安装方法
 1. 下载插件包
-2. 上传至`/public/plugins/addons`并解压
+2. 上传至`/public/plugins/addons/ojw_sy`并解压
 3. 安装完成后启用插件
 ## 使用说明
 暂无
@@ -19,7 +19,6 @@ FurryCloud一键同步上游修复版是一款用于快速同步上游产品数�
 ## 作者信息
 - 原作者：OJW云互联
 - 修复版作者：FurryCloud
-- 联系邮箱：[support@hellofurry.cn](mailto:support@hellofurry.cn)
 ## 感谢
 - [FurryCloud](https://furll.cn/)
 - [OJW云互联](https://yun.ojwyun.cn/)
